@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="helloApp">
+    <div ng-controller="worldController">
+    	<input type="text" placeholder="用户名" ng-model="user.username">{{user.username}}
+    	<input type="password" placeholder="密码" ng-model="user.password">{{user.password}}
+    	<input type="button" value="提交" ng-click="login()">
+    	{{message}}
+
+    </div>
+	<script src="bower_components/angular/angular.js"></script>
+	<script>
+		var app = angular.module("helloApp",[]);
+		app.controller('worldController',['$scope',function(o){
+			console.info(o);
+			//数据
+			o.user = {
+				username:'',
+				password:''
+			};
+			o.message = '请输入用户名';
+			//行为数据
+			o.login = function(){
+				console.info(o.user);
+			};
+			o.$watch('user.username',function(now,old){
+				console.info('now is '+now);
+				console.info('old is '+old);
+				if(now){
+					if(now.length <7 ){
+						o.message = '输入格式不合法';
+					}else{
+						o.message = '';
+					}
+				}else{
+					o.message = '请输入用户名';
+				}
+			});
+
+			//监视模型的变化
+
+
+		}]);
+	</script>
+</body>
+</html>

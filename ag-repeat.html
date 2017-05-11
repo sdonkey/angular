@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ <h1> ng-repeat</h1>
+
+ <hr>
+ <div ng-app='myApp'>
+ <ul ng-controller="ListController">
+ 	<li  data-id="{{item.id}}"  ng-repeat="item in data" >
+ 	<span>{{$first?'==============================start':''}}</span>
+ 	<strong>{{item.name}}</strong>
+ 	-<span>{{item.age}}</span>
+ 	<span>{{ $last? '==============================end':'' }}</span> 
+ 	</li>
+ </ul>
+ </div>
+	<script src="bower_components/angular/angular.js"></script>
+	<script>
+	var myApp = angular.module('myApp',[]);
+	myApp.controller('ListController', ['$scope', function($scope){
+		$scope.data = [];
+		for (var i = 0; i <= 10; i++) {
+			$scope.data[$scope.data.length] = {
+				id:i,
+				name:'heihei',
+				age:20+i,
+			};
+		}
+		
+	}]);
+	</script>
+</body>
+</html>

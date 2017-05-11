@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+ ng-bind-html
+ <hr>
+ <div ng-app="myApp" ng-controller="myController">
+   <span ng-bind-html="username"></span>
+ </div>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	
+	<script>
+		var myApp = angular.module('myApp',['ngSanitize']);
+		myApp.controller('myController', ['$scope', function($scope){
+			$scope.username = '<h1>aaaaaaaaaaaa</h1>';
+		}])
+	</script>
+</body>
+</html>

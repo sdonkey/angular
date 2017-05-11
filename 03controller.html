@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="myModule" ng-controller="HelloController">
+
+<input type="text" placeholder="input" ng-model="user.name">
+{{user.name}}
+<script src="bower_components/angular/angular.js"></script>
+<script>
+	var module = angular.module("myModule",[]);
+	//方式1 传递$scope参数，但是在有配压缩的后参数变化的问题
+	// 压缩后的代码如下
+	//==============
+	//压缩后的实例：var module=angular.module("myModule",[]);module.controller("HelloController",function(o){console.info(o)});
+	//=======================
+
+
+	/*module.controller('HelloController',function($scope){
+		console.info($scope);
+		$scope.user = {};
+		$scope.user.name = 'aaa';
+	});
+*/
+
+	//方式2 通过数据的形式来传递
+	//************************************************************************
+	module.controller('HelloController',['$scope',function(o){
+		console.info(o);
+		o.user = {};
+		o.user.name = 'aa';
+	}]);
+
+
+
+
+</script>	
+</body>
+</html>
